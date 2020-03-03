@@ -43,6 +43,8 @@ public abstract class DataRenderer extends Renderer {
      */
     protected Paint mValuePaint;
 
+    protected Paint linePaint;
+
     public DataRenderer(ChartAnimator animator, ViewPortHandler viewPortHandler) {
         super(viewPortHandler);
         this.mAnimator = animator;
@@ -61,6 +63,11 @@ public abstract class DataRenderer extends Renderer {
         mHighlightPaint.setStyle(Paint.Style.STROKE);
         mHighlightPaint.setStrokeWidth(2f);
         mHighlightPaint.setColor(Color.rgb(255, 187, 115));
+
+        linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        linePaint.setStyle(Paint.Style.STROKE);
+        linePaint.setStrokeWidth(2f);
+        linePaint.setColor(Color.BLACK);
     }
 
     protected boolean isDrawingValuesAllowed(ChartInterface chart) {

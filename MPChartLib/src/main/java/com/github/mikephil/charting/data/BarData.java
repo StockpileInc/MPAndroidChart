@@ -1,6 +1,8 @@
 
 package com.github.mikephil.charting.data;
 
+import android.graphics.Color;
+
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
 import java.util.List;
@@ -16,6 +18,12 @@ public class BarData extends BarLineScatterCandleBubbleData<IBarDataSet> {
      * the width of the bars on the x-axis, in values (not pixels)
      */
     private float mBarWidth = 0.85f;
+    private boolean isDrawVerticalLine = true;
+    private boolean isRoundedBarCorners = false;
+    private float cornerRadius = 10f;
+    private int startColor = Color.TRANSPARENT;
+    private int endColor = Color.BLACK;
+    private int verticalLineColor = Color.BLACK;
 
     public BarData() {
         super();
@@ -115,5 +123,61 @@ public class BarData extends BarLineScatterCandleBubbleData<IBarDataSet> {
      */
     public float getGroupWidth(float groupSpace, float barSpace) {
         return mDataSets.size() * (mBarWidth + barSpace) + groupSpace;
+    }
+
+    public float getmBarWidth() {
+        return mBarWidth;
+    }
+
+    public void setmBarWidth(float mBarWidth) {
+        this.mBarWidth = mBarWidth;
+    }
+
+    public boolean isDrawVerticalLine() {
+        return isDrawVerticalLine;
+    }
+
+    public void setDrawVerticalLine(boolean drawVerticalLine) {
+        isDrawVerticalLine = drawVerticalLine;
+    }
+
+    public boolean isRoundedBarCorners() {
+        return isRoundedBarCorners;
+    }
+
+    public void setRoundedBarCorners(boolean enable) {
+        isRoundedBarCorners = enable;
+    }
+
+    public float getCornerRadius() {
+        return cornerRadius;
+    }
+
+    public void setCornerRadius(float cornerRadius) {
+        this.cornerRadius = cornerRadius;
+    }
+
+    public int getStartColor() {
+        return startColor;
+    }
+
+    public void setStartColor(int startColor) {
+        this.startColor = startColor;
+    }
+
+    public int getEndColor() {
+        return endColor;
+    }
+
+    public void setEndColor(int endColor) {
+        this.endColor = endColor;
+    }
+
+    public int getVerticalLineColor() {
+        return verticalLineColor;
+    }
+
+    public void setVerticalLineColor(int verticalLineColor) {
+        this.verticalLineColor = verticalLineColor;
     }
 }

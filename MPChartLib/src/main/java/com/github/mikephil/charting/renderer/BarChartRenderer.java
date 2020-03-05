@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 
@@ -167,22 +168,40 @@ public class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
             }
 
             if (isRoundedBarCorners) {
-                int startColor = barData.getStartColor();
-                int endColor = barData.getEndColor();
+
                 float cornerRadius = barData.getCornerRadius();
 
-                mRenderPaint.setShader(new LinearGradient(
-                        buffer.buffer[j],
-                        buffer.buffer[j + 3],
-                        buffer.buffer[j],
+                if (isCustomFill) {
+                    dataSet.getFill(pos).fillRoundRect(c,
+                            mRenderPaint,
+                            buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2], buffer.buffer[j + 3],
+                            cornerRadius);
+                } else {
+                    c.drawRoundRect(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2], buffer.buffer[j + 3],
+                            cornerRadius, cornerRadius, mRenderPaint);
+                }
+
+                /*
+                int startColor = barData.getStartColor();
+                int endColor = barData.getEndColor();
+                Rect rect = c.getClipBounds();
+
+                LinearGradient gradient = new LinearGradient(
+                        rect.left,
+                        rect.bottom,
+                        rect.left,
                         buffer.buffer[j + 1],
                         startColor,
                         endColor,
-                        android.graphics.Shader.TileMode.MIRROR));
-                Path path2 = roundRect(new RectF(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2],
-                        buffer.buffer[j + 3]), cornerRadius, cornerRadius, true, true, false, false);
-                c.drawPath(path2, mRenderPaint);
+                        android.graphics.Shader.TileMode.MIRROR);
+
+                mRenderPaint.setShader(gradient);
+
+                c.drawRoundRect(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2], buffer.buffer[j + 3],
+                        cornerRadius, cornerRadius, mRenderPaint); */
+
             } else {
+
                 if (isCustomFill) {
                     dataSet.getFill(pos).fillRect(
                             c, mRenderPaint,

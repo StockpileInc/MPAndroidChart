@@ -3,6 +3,7 @@ package com.xxmassdeveloper.mpchartexample;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
@@ -160,7 +161,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
             chart.notifyDataSetChanged();
 
         } else {
-            set1 = new BarDataSet(values, "The year 2017");
+            set1 = new BarDataSet(values, "The year 2020");
 
             set1.setDrawIcons(false);
 
@@ -181,7 +182,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
             gradientFills.add(new Fill(startColor3, endColor3));
             gradientFills.add(new Fill(startColor4, endColor4));
             gradientFills.add(new Fill(startColor5, endColor5));
-
+            gradientFills.add(new Fill(Color.TRANSPARENT, Color.BLACK));
             set1.setFills(gradientFills);
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<>();
@@ -191,6 +192,11 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
             data.setValueTextSize(10f);
             data.setValueTypeface(tfLight);
             data.setBarWidth(0.9f);
+            chart.setDrawBarShadow(true);
+            data.setRoundedBarCorners(true);
+            data.setCornerRadius(50);
+            data.setVerticalLineColor(Color.BLACK);
+            data.setDrawVerticalLine(true);
 
             chart.setData(data);
         }
